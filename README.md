@@ -1,2 +1,2 @@
-# Parking_Ease_Frontend
+# Parking_Ease
 Your hassle-free parking reservation solution
