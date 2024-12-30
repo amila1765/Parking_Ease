@@ -161,7 +161,7 @@
     </style>
 </head>
 <body>
-    <?php include 'navbar.php'; ?>
+    <?php include '../includes/navbar.php'; ?>
 
     <section class="contact-section">
         <h1>Contact Us</h1>
