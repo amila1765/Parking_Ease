@@ -77,7 +77,7 @@
 
         .contact-section {
             height: 100vh;
-            background: url('./Assets/Contact_Background.jpg') no-repeat center center/cover;
+            background: url('../assets/images/pageBackgrounds/Contact_Background.jpg') no-repeat center center/cover;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -168,14 +168,15 @@
         <form action="#" method="post">
             <input type="text" placeholder="Your Name" required>
             <input type="email" placeholder="Your Email" required>
+            <input type="tel" placeholder="Your Contact Number" required>
             <textarea placeholder="Your Message" rows="5" required></textarea>
             <button type="submit">Send Message</button>
         </form>
     </section>
 
-    <?php include 'footer.php'; ?>
+    <?php include '../includes/footer.php'; ?>
 
     <!-- Login Modal -->
-    <?php include 'login_modal.php'; ?>
+    <?php include '../modals/loginModal.php'; ?>
 </body>
 </html>
