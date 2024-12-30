@@ -7,8 +7,11 @@
             <input type="password" placeholder="Password" required>
             <button type="submit">Login</button>
         </form>
-        <p>Don't have an account? <a href="#">Sign up</a></p>
-    </div>
+        <?php
+        // Dynamic path handling for the signup link
+        $basePath = (basename($_SERVER['SCRIPT_FILENAME']) === 'index.php') ? './pages/' : './';
+        ?>
+         <p>Don't have an account? <a href="<?= $basePath ?>signup.php">Sign up</a></p>
 </div>
 
 <script>
