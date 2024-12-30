@@ -85,7 +85,7 @@
         /* Home Body Section */
         .home_body {
             height: 100vh;
-            background: url('./Assets/Home_Background.jpg') no-repeat center center/cover;
+            background: url('./assets/images/pageBackgrounds/Home_Background.jpg') no-repeat center center/cover;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -163,8 +163,7 @@
 </head>
 <body>
     <!-- Navigation Bar -->
-    <?php include 'navbar.php'; ?>
-
+    <?php include './includes/navbar.php'; ?>
     <!-- Main Content -->
     <main>
         <section class="home_body">
@@ -175,10 +174,10 @@
     </main>
 
     <!-- Footer -->
-    <?php include 'footer.php'; ?>
+    <?php include './includes/footer.php'; ?>
 
     <!-- Login Modal -->
-    <?php include 'login_modal.php'; ?>
+    <?php include './modals/loginModal.php'; ?>
 
     <!-- JavaScript for Responsive Menu -->
     <script>
