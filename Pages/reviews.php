@@ -77,7 +77,7 @@
 
         /* Reviews Section */
         .reviews-section {
-            background: url('./Assets/Reviews_Background.jpg') no-repeat center center/cover;
+            background: url('../assets/images/pageBackgrounds/Reviews_Background.jpg') no-repeat center center/cover;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -127,7 +127,7 @@
         }
 
         .review-form input, .review-form textarea, .review-form button {
-            width: 100%;
+            width: 95%;
             padding: 0.75rem;
             margin-bottom: 1rem;
             border: 1px solid #ccc;
@@ -136,6 +136,8 @@
         }
 
         .review-form button {
+            padding: 10px 20px;
+            display: inline-block;
             background: #ff6f61;
             color: white;
             border: none;
@@ -154,7 +156,7 @@
         }
 
         .star {
-            font-size: 1.5rem;
+            font-size: 3rem;
             color: #ccc;
             cursor: pointer;
         }
@@ -206,7 +208,8 @@
     </style>
 </head>
 <body>
-    <?php include 'navbar.php'; ?>
+    <?php include '../includes/navbar.php'; ?>
+
 
     <section class="reviews-section">
         <h1>Customer Reviews</h1>
@@ -251,10 +254,12 @@
         </div>
     </section>
 
-    <?php include 'footer.php'; ?>
+    <?php include '../includes/footer.php'; ?>
+
 
     <!-- Login Modal -->
-    <?php include 'login_modal.php'; ?>
+    <?php include '../modals/loginModal.php'; ?>
+
 
     <script>
         // Star Rating Selection
