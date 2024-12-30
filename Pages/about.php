@@ -83,7 +83,7 @@
 
         .about-section {
             height: 100vh;
-            background: url('./Assets/About_Background.jpg') no-repeat center center/cover;
+            background: url('../assets/images/pageBackgrounds/About_Background.jpg') no-repeat center center/cover;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -154,7 +154,7 @@
     </style>
 </head>
 <body>
-    <?php include 'navbar.php'; ?>
+    <?php include '../includes/navbar.php'; ?>
 
     <section class="about-section">
         <h1>About ParkingEase</h1>
@@ -164,9 +164,9 @@
         </p>
     </section>
 
-    <?php include 'footer.php'; ?>
+    <?php include '../includes/footer.php'; ?>
 
     <!-- Login Modal -->
-    <?php include 'login_modal.php'; ?>
+    <?php include '../modals/loginModal.php'; ?>
 </body>
 </html>
