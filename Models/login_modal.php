@@ -2,7 +2,7 @@
     <div class="modal-content">
         <span class="close" onclick="closeModal()">&times;</span>
         <h2>Login</h2>
-        <form>
+        <form id="loginForm">
             <input type="email" placeholder="Email" required>
             <input type="password" placeholder="Password" required>
             <button type="submit">Login</button>
@@ -12,6 +12,7 @@
         $basePath = (basename($_SERVER['SCRIPT_FILENAME']) === 'index.php') ? './pages/' : './';
         ?>
          <p>Don't have an account? <a href="<?= $basePath ?>signup.php">Sign up</a></p>
+    </div>
 </div>
 
 <script>
@@ -29,6 +30,41 @@
             modal.style.display = 'none';
         }
     }
+
+// Handle Form Submission
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    const data = {
+        email: email,
+        password: password
+    };
+
+    fetch('./api/login_API.php', {  // API path
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(responseData => {
+        if (responseData.status === 'success') {
+            alert('Login successful!');
+            window.location.href = '/Parking_Ease/pages/reservation.php'; // Redirect to user dashboard or home
+        } else {
+            alert('Error: ' + responseData.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Something went wrong!');
+    });
+});
+
 </script>
 
 <style>
