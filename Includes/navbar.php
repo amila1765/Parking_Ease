@@ -1,3 +1,10 @@
+<?php ob_start(); ?>
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
+
 <header>
     <nav>
         <div class="logo">ParkingEase</div>
@@ -9,10 +16,24 @@
             // Generate dynamic links
             ?>
              <li><a href="<?= $basePath ?>index.php">Home</a></li>
+             <?php if (isset($_SESSION['email'])): ?>
+                    <a href="<?= $basePath ?>pages/reservation.php">Reservation</a>
+                <?php else: ?>
             <li><a href="#" onclick="openModal()">Reservation</a></li>
             <li><a href="<?= $basePath ?>pages/about.php">About</a></li>
             <li><a href="<?= $basePath ?>pages/reviews.php">Reviews</a></li>
             <li><a href="<?= $basePath ?>pages/contact.php">Contact</a></li>
+
+             <!-- Display username if logged in -->
+             <?php if (isset($_SESSION['email'])): ?>
+                <li class="dropdown">
+                    <a href="#" id="userDropdown" onclick="toggleDropdown()"><?php echo htmlspecialchars($_SESSION['email']); ?></a>
+                    <div class="dropdown-menu" id="dropdownMenu">
+                        <a href="../pages/profile.php">View Profile</a>
+                        <a href="#" id="logout-btn" onclick="logout()">Logout</a>
+                    </div>
+                </li>
+            <?php endif; ?>
         </ul>
     </nav>
 </header>
