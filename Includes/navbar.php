@@ -37,3 +37,27 @@ if (session_status() === PHP_SESSION_NONE) {
         </ul>
     </nav>
 </header>
+
+<script>
+    // Toggle dropdown visibility on user name click
+    function toggleDropdown() {
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+    }
+
+     // Close dropdown if clicked outside
+     window.onclick = function(event) {
+        // Close dropdown only if clicked outside of any dropdown menu
+        const dropdownMenus = document.querySelectorAll('.dropdown-menu');
+        dropdownMenus.forEach(menu => {
+            const dropdownButton = menu.previousElementSibling;
+            
+            if (!dropdownButton.contains(event.target) && !menu.contains(event.target)) {
+                menu.style.display = 'none';
+            }
+        });
+    }
+
+    
+
+</script>
