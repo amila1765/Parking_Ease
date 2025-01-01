@@ -280,6 +280,8 @@ session_start();
             vehicleField.classList.add('vehicle-field');
 
             const vehicleType = document.createElement('select');
+            vehicleType.name = 'vehicle_type[]'; // Ensure the name matches the array
+            vehicleType.required = true;
             vehicleType.innerHTML = `
                 <option value="">Select Vehicle Type</option>
                 <option value="Car">Car</option>
