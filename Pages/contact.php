@@ -170,7 +170,7 @@ session_start();
 
     <section class="contact-section">
         <h1>Contact Us</h1>
-        <form action="#" method="post">
+        <form id="contact-form">
             <input type="text" name="name" placeholder="Your Name"required>
             <input type="email" name="email" placeholder="Your Email" required>
             <input type="tel" name="contactNumber"placeholder="Your Contact Number"required>
