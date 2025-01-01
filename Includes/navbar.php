@@ -58,6 +58,26 @@ if (session_status() === PHP_SESSION_NONE) {
         });
     }
 
-    
+     // Handle logout
+     function logout() {
+        fetch(window.location.origin + '/Parking_Ease/api/logout_API.php')// Assuming logout_API.php destroys the session
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    // Redirect to the home page after successful logout
+                    window.location.href = '/Parking_Ease/index.php';
+                } else {
+                    alert('Logout failed!');
+                }
+            })
+            .catch(error => {
+                console.error('Logout error:', error);
+                alert('Something went wrong during logout.');
+            });
+    }
 
 </script>
+
+<style>
+    
+</style>
