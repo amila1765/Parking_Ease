@@ -1,3 +1,8 @@
+<?php
+// Start the session before any output
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -178,5 +183,30 @@
 
     <!-- Login Modal -->
     <?php include '../modals/loginModal.php'; ?>
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+
+            try {
+                const response = await fetch('../api/contact_API.php', {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await response.json();
+
+                if (result.status === 'success') {
+                    alert(result.message);
+                    this.reset();
+                } else {
+                    alert(result.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Something went wrong!');
+            }
+        });
+    </script>
 </body>
 </html>
