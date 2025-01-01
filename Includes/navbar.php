@@ -79,5 +79,40 @@ if (session_status() === PHP_SESSION_NONE) {
 </script>
 
 <style>
-    
+    /*Dropdown Styles */
+    .dropdown{
+        position: relative
+        display: inline-block;
+    }
+
+    .dropdown a{
+        cursor: pointer;
+        padding: 10px;
+        color: white;
+        text-decoration: none;
+    }
+
+    .dropdown-manu{
+        display: none;
+        position: absolute;
+        right: 0;
+        background-color: black;
+        min-width: 150px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        border-radius: 5px;
+    }
+
+    .dropdown-manu a {
+        padding: 12px 16px;
+        display: block;
+        color: #333;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+    .dropdown-manu a:hover{
+        background-color: #f1f1f1;
+    }
+
 </style>
