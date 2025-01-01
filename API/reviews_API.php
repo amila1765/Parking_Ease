@@ -23,6 +23,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     // Log the SQL query for debugging 
     error_log("SQL Query: " . $sql);
 
+     // Execute the query
+     if ($conn->query($sql) === TRUE) {
+        echo json_encode(['status' => 'success', 'message' => 'Review submitted successfully!']);
+    } else {
+        // Log the error for debugging
+        error_log("Database Error: " . $conn->error);
+        echo json_encode(['status' => 'error', 'message' => 'Error: ' . $conn->error]);
+    }
+
+    // Close the database connection
+    $conn->close();
+} else {
+    echo json_encode(['status' => 'error', 'message' => 'Invalid request method.']);
+}
+?>
+
     
 
-}
