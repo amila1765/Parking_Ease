@@ -171,10 +171,10 @@ session_start();
     <section class="contact-section">
         <h1>Contact Us</h1>
         <form action="#" method="post">
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Your Email" required>
-            <input type="tel" placeholder="Your Contact Number" required>
-            <textarea placeholder="Your Message" rows="5" required></textarea>
+            <input type="text" name="name" placeholder="Your Name"required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <input type="tel" name="contactNumber"placeholder="Your Contact Number"required>
+            <textarea name="message"placeholder="Your Message"rows="5"required></textarea>
             <button type="submit">Send Message</button>
         </form>
     </section>
