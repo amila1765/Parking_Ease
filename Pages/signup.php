@@ -203,17 +203,17 @@ session_start();
         <!-- Personal Information -->
             <div class="form-group">
                 <label for="first-name">First Name</label>
-                <input type="text" id="first-name" placeholder="Enter First Name" required>
+                <input type="text" id="first-name" name="first_name" placeholder="Enter First Name"required>
             </div>
 
             <div class="form-group">
                 <label for="last-name">Last Name</label>
-                <input type="text" id="last-name" placeholder="Enter Last Name" required>
+                <input type="text" id="last-name" name="last_name" placeholder="Enter Last Name"required>
             </div>
 
             <div class="form-group">
                 <label for="birthday">Birthday</label>
-                <input type="date" id="birthday" required>
+                <input type="date" id="birthday" name="birthday"required>
             </div>
 
             <div class="form-group">
