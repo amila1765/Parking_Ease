@@ -138,7 +138,7 @@ session_start();
             border-radius: 5px;
             font-size: 1rem;
             cursor: pointer;
-            transition: background 0.3s ease;
+            transition: background 0.3s ease; 
         }
 
         .contact-section form button:hover {
