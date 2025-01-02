@@ -1,3 +1,8 @@
+<?php
+// Start the session before any output
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -217,7 +222,7 @@
         <!-- Review Submission Form -->
         <div class="review-form">
             <h2>Submit Your Review</h2>
-            <form action="submit_review.php" method="post">
+            <form id="reviews-form">
                 <input type="text" name="name" placeholder="Your Name" required>
                 <input type="email" name="email" placeholder="Your Email" required>
                 <textarea name="review" rows="5" placeholder="Your Experience..." required></textarea>
@@ -234,32 +239,99 @@
             </form>
         </div>
 
-        <!-- Review Tiles -->
-        <div class="review-tiles">
-            <div class="review-tile">
-                <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
-                <p>"Amazing service, highly recommended!"</p>
-                <small>- Jane D.</small>
-            </div>
-            <div class="review-tile">
-                <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                <p>"ParkingEase made my life easier."</p>
-                <small>- John S.</small>
-            </div>
-            <div class="review-tile">
-                <div class="stars">&#9733;&#9733;&#9733;&#9734;&#9734;</div>
-                <p>"Great app for busy cities!"</p>
-                <small>- Sarah K.</small>
-            </div>
+      <!-- Display Reviews -->
+      <div class="review-tiles" id="review-tiles">
+            <!-- Reviews will be injected here via JavaScript -->
         </div>
     </section>
 
     <?php include '../includes/footer.php'; ?>
 
-
     <!-- Login Modal -->
     <?php include '../modals/loginModal.php'; ?>
 
+    <script>
+
+        // Fetch reviews from the API and display them
+        async function fetchReviews() {
+            try {
+                const response = await fetch('../API/displayReviews_API.php'); // API endpoint for reviews
+                const data = await response.json(); // Parse the JSON response
+
+                const reviewTiles = document.getElementById('review-tiles');
+                reviewTiles.innerHTML = ''; // Clear previous reviews
+
+                if (data.length > 0) {
+                    // Iterate through each review and display it
+                    data.forEach(review => {
+                        const reviewTile = document.createElement('div');
+                        reviewTile.classList.add('review-tile');
+                        reviewTile.innerHTML = `
+                            <div class="stars">
+                                ${generateStars(review.rating)}
+                            </div>
+                            <p>"${review.review_text}"</p>
+                            <small>- ${review.Name}</small>
+                        `;
+                        reviewTiles.appendChild(reviewTile);
+                    });
+                } else {
+                    // If no reviews are found, show a message
+                    reviewTiles.innerHTML = '<p>No reviews yet.</p>';
+                }
+            } catch (error) {
+                console.error('Error fetching reviews:', error);
+            }
+        }
+
+        // Helper function to generate star ratings
+        function generateStars(rating) {
+            let starsHtml = '';
+            for (let i = 1; i <= 5; i++) {
+                starsHtml += i <= rating ? '&#9733;' : '&#9734;';
+            }
+            return starsHtml;
+        }
+
+        // Call fetchReviews when the page loads
+        window.onload = fetchReviews;
+
+        // Handle form submission for new reviews
+        document.getElementById('reviews-form').addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const formData = new FormData(this);
+
+        // Log form data for debugging
+        formData.forEach((value, key) => {
+            console.log(key + ": " + value);
+        });
+
+        // Log form data for debugging
+        formData.forEach((value, key) => {
+            console.log(key + ": " + value);
+        });
+
+        try {
+            const response = await fetch('../API/reviews_API.php', {
+                method: 'POST',
+                body: formData
+            });
+            const result = await response.json();
+
+            if (result.status === 'success') {
+                alert(result.message);
+                this.reset(); // Reset the form after successful submission
+                location.reload(); // Reload the page after successful submission
+            } else {
+                alert(result.message);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred while submitting the review. Please check the console for more details.');
+        }
+    });
+    </script>   
 
     <script>
         // Star Rating Selection
