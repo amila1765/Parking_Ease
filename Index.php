@@ -169,6 +169,7 @@
         <section class="home_body">
             <h1>Welcome to ParkingEase</h1>
             <p>Your hassle-free parking reservation solution.</p>
+             <!-- button class="reservation-btn" onclick="openModal()">Make a Reservation</button -->
             <button class="reservation-btn" onclick="openModal()">Make a Reservation</button>
         </section>
     </main>
@@ -178,6 +179,22 @@
 
     <!-- Login Modal -->
     <?php include './modals/loginModal.php'; ?>
+
+    <script>
+        // Check if user is logged in based on PHP session
+        const isLoggedIn = <?php echo isset($_SESSION['email']) ? '1' : '0'; ?>;
+
+        // Add event listener for the Reservation button
+        document.getElementById('reservation-btn').addEventListener('click', function () {
+            if (isLoggedIn == 1) {
+                // Redirect to reservation page if logged in
+                window.location.href = './pages/reservation.php';
+            } else {
+                // Open login modal if not logged in
+                openModal();
+            }
+        });
+    </script>
 
     <!-- JavaScript for Responsive Menu -->
     <script>
