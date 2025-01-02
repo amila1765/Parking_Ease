@@ -4,7 +4,6 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 ?>
-
 <header>
     <nav>
         <div class="logo">ParkingEase</div>
@@ -15,17 +14,21 @@ if (session_status() === PHP_SESSION_NONE) {
 
             // Generate dynamic links
             ?>
-             <li><a href="<?= $basePath ?>index.php">Home</a></li>
-             <?php if (isset($_SESSION['email'])): ?>
+            <li><a href="<?= $basePath ?>index.php">Home</a></li>
+            <li>
+                <?php if (isset($_SESSION['email'])): ?>
                     <a href="<?= $basePath ?>pages/reservation.php">Reservation</a>
                 <?php else: ?>
-            <li><a href="#" onclick="openModal()">Reservation</a></li>
+                    <a href="#" onclick="openModal()">Reservation</a>
+                <?php endif; ?>
+            </li>
+
             <li><a href="<?= $basePath ?>pages/about.php">About</a></li>
             <li><a href="<?= $basePath ?>pages/reviews.php">Reviews</a></li>
             <li><a href="<?= $basePath ?>pages/contact.php">Contact</a></li>
-
-             <!-- Display username if logged in -->
-             <?php if (isset($_SESSION['email'])): ?>
+            
+            <!-- Display username if logged in -->
+            <?php if (isset($_SESSION['email'])): ?>
                 <li class="dropdown">
                     <a href="#" id="userDropdown" onclick="toggleDropdown()"><?php echo htmlspecialchars($_SESSION['email']); ?></a>
                     <div class="dropdown-menu" id="dropdownMenu">
@@ -45,8 +48,8 @@ if (session_status() === PHP_SESSION_NONE) {
         dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
     }
 
-     // Close dropdown if clicked outside
-     window.onclick = function(event) {
+    // Close dropdown if clicked outside
+    window.onclick = function(event) {
         // Close dropdown only if clicked outside of any dropdown menu
         const dropdownMenus = document.querySelectorAll('.dropdown-menu');
         dropdownMenus.forEach(menu => {
@@ -58,8 +61,8 @@ if (session_status() === PHP_SESSION_NONE) {
         });
     }
 
-     // Handle logout
-     function logout() {
+    // Handle logout
+    function logout() {
         fetch(window.location.origin + '/Parking_Ease/api/logout_API.php')// Assuming logout_API.php destroys the session
             .then(response => response.json())
             .then(data => {
@@ -75,24 +78,23 @@ if (session_status() === PHP_SESSION_NONE) {
                 alert('Something went wrong during logout.');
             });
     }
-
 </script>
 
 <style>
-    /*Dropdown Styles */
-    .dropdown{
-        position: relative
+    /* Dropdown Styles */
+    .dropdown {
+        position: relative;
         display: inline-block;
     }
 
-    .dropdown a{
+    .dropdown a {
         cursor: pointer;
         padding: 10px;
         color: white;
         text-decoration: none;
     }
 
-    .dropdown-manu{
+    .dropdown-menu {
         display: none;
         position: absolute;
         right: 0;
@@ -103,7 +105,7 @@ if (session_status() === PHP_SESSION_NONE) {
         border-radius: 5px;
     }
 
-    .dropdown-manu a {
+    .dropdown-menu a {
         padding: 12px 16px;
         display: block;
         color: #333;
@@ -111,8 +113,7 @@ if (session_status() === PHP_SESSION_NONE) {
         transition: 0.3s;
     }
 
-    .dropdown-manu a:hover{
+    .dropdown-menu a:hover {
         background-color: #f1f1f1;
     }
-
 </style>
