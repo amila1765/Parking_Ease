@@ -1,7 +1,7 @@
 <footer>
     <div class="footer-content">
-    <p>&copy; 2024 ParkingEase. All Rights Reserved.</p>
-    <div class="footer-links">
+        <p>&copy; 2024 ParkingEase. All Rights Reserved.</p>
+        <div class="footer-links">
             <a href="/privacy-policy.php">Privacy Policy</a> | 
             <a href="/terms-of-service.php">Terms of Service</a>
         </div>
