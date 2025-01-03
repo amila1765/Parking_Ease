@@ -2,6 +2,7 @@
     <div class="modal-content">
         <span class="close" onclick="closeModal()">&times;</span>
         <h2>Login</h2>
+        
         <form id="loginForm">
             <input type="email" placeholder="Email" required>
             <input type="password" placeholder="Password" required>
