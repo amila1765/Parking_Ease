@@ -233,7 +233,8 @@ if (!isset($_SESSION['email'])) {
 
             <div class="button-container">
             <button class="update-btn" onclick="openUpdateModal()">Update Profile</button>
-                <button class="delete-btn" onclick="deleteProfile()">Delete Profile</button>
+                <button class="delete-btn" onclick="openDeleteModal()">Delete Profile</button>
+
             </div>
         </div>
     </div>
@@ -346,10 +347,10 @@ if (!isset($_SESSION['email'])) {
     });
 
 
-    // Function to delete profile (this will need to call an API or script to handle the deletion)
+    // Delete Profile
     function deleteProfile() {
         if (confirm("Are you sure you want to delete your profile? This action is irreversible.")) {
-            window.location.href = 'delete_profile.php'; // Redirect to a deletion script
+            window.location.href = 'delete_profile.php';
         }
     }
 
