@@ -164,7 +164,6 @@ session_start();
     </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
     <?php include '../includes/navbar.php'; ?>
 
     <!-- Main Content -->
