@@ -197,25 +197,22 @@ session_start();
     <?php include '../includes/navbar.php'; ?>
 
     <div class="container">
-    <form class="signup-form" id="signup-form">
+        <form class="signup-form" id="signup-form">
             <h2>Create Your Account</h2>
 
-        <!-- Personal Information -->
+            <!-- Personal Information -->
             <div class="form-group">
                 <label for="first-name">First Name</label>
-                <input type="text" id="first-name" name="first_name" placeholder="Enter First Name"required>
+                <input type="text" id="first-name" name="first_name" placeholder="Enter First Name" required>
             </div>
-
             <div class="form-group">
                 <label for="last-name">Last Name</label>
-                <input type="text" id="last-name" name="last_name" placeholder="Enter Last Name"required>
+                <input type="text" id="last-name" name="last_name" placeholder="Enter Last Name" required>
             </div>
-
             <div class="form-group">
                 <label for="birthday">Birthday</label>
-                <input type="date" id="birthday" name="birthday"required>
+                <input type="date" id="birthday" name="birthday" required>
             </div>
-
             <div class="form-group">
                 <label for="gender">Gender</label>
                 <select id="gender" name="gender" required>
@@ -225,12 +222,10 @@ session_start();
                     <option value="Other">Other</option>
                 </select>
             </div>
-
             <div class="form-group">
                 <label for="contact">Contact Number</label>
                 <input type="text" id="contact" name="contact_number" placeholder="Enter Contact Number" required>
             </div>
-
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" placeholder="Enter Email" required>
@@ -255,12 +250,11 @@ session_start();
                 <button type="button" class="add-vehicle-btn" onclick="addVehicleField()">Add Another Vehicle</button>
             </div>
 
-            <!--Password -->
+            <!-- Password -->
             <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" placeholder="Enter Password" required>
             </div>
-
             <div class="form-group">
                 <label for="confirm-password">Confirm Password</label>
                 <input type="password" id="confirm-password" name="confirm_password" placeholder="Confirm Password" required>
@@ -268,60 +262,61 @@ session_start();
 
             <!-- Submit -->
             <button type="submit" class="submit-btn">Sign Up</button>
-
             <p class="login-link">Already have an account? <a href="#" onclick="window.history.back()">Login</a></p>
         </form>
     </div>
 
     <script>
-        function addVehicleField() {
-            const container = document.getElementById('vehicle-container');
-            const vehicleField = document.createElement('div');
-            vehicleField.classList.add('vehicle-field');
+    function addVehicleField() {
+        const container = document.getElementById('vehicle-container');
 
-            const vehicleType = document.createElement('select');
-            vehicleType.name = 'vehicle_type[]'; // Ensure the name matches the array
-            vehicleType.required = true;
-            vehicleType.innerHTML = `
-                <option value="">Select Vehicle Type</option>
-                <option value="Car">Car</option>
-                <option value="SUV">SUV</option>
-                <option value="Van">Van</option>
-                <option value="Two Wheeler">Two Wheeler</option>
-                <option value="Three Wheeler">Three Wheeler</option>`;
-            
-            const vehicleNumber = document.createElement('input');
-            vehicleNumber.type = 'text';
-            vehicleNumber.name = 'vehicle_number[]';//Esure the name matches the array
-            vehicleNumber.placeholder = 'Vehicle Number';
-            vehicleNumber.required = true;
+        const vehicleField = document.createElement('div');
+        vehicleField.classList.add('vehicle-field');
 
-            vehicleField.appendChild(vehicleType);
-            vehicleField.appendChild(vehicleNumber);
-            container.appendChild(vehicleField);
+        const vehicleType = document.createElement('select');
+        vehicleType.name = 'vehicle_type[]'; // Ensure the name matches the array
+        vehicleType.required = true;
+        vehicleType.innerHTML = `
+            <option value="">Select Vehicle Type</option>
+            <option value="Car">Car</option>
+            <option value="SUV">SUV</option>
+            <option value="Van">Van</option>
+            <option value="Two Wheeler">Two Wheeler</option>
+            <option value="Three Wheeler">Three Wheeler</option>`;
+
+        const vehicleNumber = document.createElement('input');
+        vehicleNumber.type = 'text';
+        vehicleNumber.name = 'vehicle_number[]'; // Ensure the name matches the array
+        vehicleNumber.placeholder = 'Vehicle Number';
+        vehicleNumber.required = true;
+
+        vehicleField.appendChild(vehicleType);
+        vehicleField.appendChild(vehicleNumber);
+        container.appendChild(vehicleField);
+    }
+
+    // Form submission logic for API call
+    document.getElementById('signup-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const formData = new FormData(e.target);
+        const vehicles = [];
+        const vehicleTypes = formData.getAll('vehicle_type[]');
+        const vehicleNumbers = formData.getAll('vehicle_number[]');
+
+        for (let i = 0; i < vehicleTypes.length; i++) {
+            vehicles.push({ vehicle_type: vehicleTypes[i], vehicle_number: vehicleNumbers[i] });
         }
 
-        // Form submission logic for API call
-        document.getElementById('signup-form').addEventListener('submit',async function(e) {e.preventDefault();
-        
-            const formData = new FormData(e.target);
-            const vehicle = [];
-            const vehicleTypes = formData.getAll('vehicle_type[]');
-            const vehicleNumbers = formData.getAll('vehicle_number[]');
-
-            for (let i = 0; i <vehicleTypes.length; i++){
-                vehicle.push({vehicle_type: vehicleTypes[i], vehicle_number:vehicleNumbers[i]});
-            }
-
-            const payload = {
-                first_name:formData.get('first_name'),
-                last_name:formData.get('last_name'),
-                birthday: formData.get('birthday'),
-                gender: formData.get('gender'),
-                contact_number: formData.get('contact_number'),
-                email: formData.get('email'),
-                password: formData.get('password'),
-                vehicles: vehicles
+        const payload = {
+            first_name: formData.get('first_name'),
+            last_name: formData.get('last_name'),
+            birthday: formData.get('birthday'),
+            gender: formData.get('gender'),
+            contact_number: formData.get('contact_number'),
+            email: formData.get('email'),
+            password: formData.get('password'),
+            vehicles: vehicles
         };
 
         const response = await fetch('../api/register_user.php', {
@@ -334,7 +329,7 @@ session_start();
         alert(result.message);
         if (result.status === 'success') {
             window.location.href = '../index.php'; // Redirect to login page
-            }
+        }
         });
     </script>
 
