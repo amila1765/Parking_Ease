@@ -215,7 +215,6 @@ session_start();
 <body>
     <?php include '../includes/navbar.php'; ?>
 
-
     <section class="reviews-section">
         <h1>Customer Reviews</h1>
 
@@ -239,8 +238,8 @@ session_start();
             </form>
         </div>
 
-      <!-- Display Reviews -->
-      <div class="review-tiles" id="review-tiles">
+        <!-- Display Reviews -->
+        <div class="review-tiles" id="review-tiles">
             <!-- Reviews will be injected here via JavaScript -->
         </div>
     </section>
@@ -331,7 +330,7 @@ session_start();
             alert('An error occurred while submitting the review. Please check the console for more details.');
         }
     });
-    </script>   
+    </script>
 
     <script>
         // Star Rating Selection
