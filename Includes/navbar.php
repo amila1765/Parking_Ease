@@ -112,7 +112,7 @@ if (session_status() === PHP_SESSION_NONE) {
         text-decoration: none;
         transition: 0.3s;
     }
-
+    
     .dropdown-menu a:hover {
         background-color: #f1f1f1;
     }
