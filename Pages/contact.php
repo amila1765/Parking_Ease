@@ -138,7 +138,7 @@ session_start();
             border-radius: 5px;
             font-size: 1rem;
             cursor: pointer;
-            transition: background 0.3s ease; 
+            transition: background 0.3s ease;
         }
 
         .contact-section form button:hover {
@@ -171,10 +171,10 @@ session_start();
     <section class="contact-section">
         <h1>Contact Us</h1>
         <form id="contact-form">
-            <input type="text" name="name" placeholder="Your Name"required>
+            <input type="text" name="name" placeholder="Your Name" required>
             <input type="email" name="email" placeholder="Your Email" required>
-            <input type="tel" name="contactNumber"placeholder="Your Contact Number"required>
-            <textarea name="message"placeholder="Your Message"rows="5"required></textarea>
+            <input type="tel" name="contactNumber" placeholder="Your Contact Number" required>
+            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
             <button type="submit">Send Message</button>
         </form>
     </section>
@@ -183,6 +183,7 @@ session_start();
 
     <!-- Login Modal -->
     <?php include '../modals/loginModal.php'; ?>
+
     <script>
         document.getElementById('contact-form').addEventListener('submit', async function (e) {
             e.preventDefault();
@@ -208,5 +209,6 @@ session_start();
             }
         });
     </script>
+    
 </body>
 </html>
