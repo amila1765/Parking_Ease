@@ -33,7 +33,7 @@ if ($userResult->num_rows > 0) {
     $user_id = $userData['user_id'];
 
     // Fetch vehicles
-    $vehicleQuery = "SELECT vehicle_type, vehicle_number FROM vehicles WHERE user_id = ?";
+    $vehicleQuery = "SELECT vehicle_id, vehicle_type, vehicle_number FROM vehicles WHERE user_id = ?";
     $stmt = $conn->prepare($vehicleQuery);
     if (!$stmt) {
         echo json_encode(['status' => 'error', 'message' => 'Vehicle query preparation failed']);
