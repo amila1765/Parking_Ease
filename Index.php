@@ -164,13 +164,14 @@
 <body>
     <!-- Navigation Bar -->
     <?php include './includes/navbar.php'; ?>
+
     <!-- Main Content -->
     <main>
         <section class="home_body">
             <h1>Welcome to ParkingEase</h1>
             <p>Your hassle-free parking reservation solution.</p>
-             <!-- button class="reservation-btn" onclick="openModal()">Make a Reservation</button -->
-            <button class="reservation-btn" onclick="openModal()">Make a Reservation</button>
+            <!-- button class="reservation-btn" onclick="openModal()">Make a Reservation</button -->
+            <button id="reservation-btn" class="reservation-btn">Make a Reservation</button>
         </section>
     </main>
 
