@@ -32,7 +32,7 @@ if (session_status() === PHP_SESSION_NONE) {
                 <li class="dropdown">
                     <a href="#" id="userDropdown" onclick="toggleDropdown()"><?php echo htmlspecialchars($_SESSION['email']); ?></a>
                     <div class="dropdown-menu" id="dropdownMenu">
-                        <a href="../pages/profile.php">View Profile</a>
+                        <a href="/Parking_Ease/pages/profile.php">View Profile</a>
                         <a href="#" id="logout-btn" onclick="logout()">Logout</a>
                     </div>
                 </li>
@@ -112,7 +112,7 @@ if (session_status() === PHP_SESSION_NONE) {
         text-decoration: none;
         transition: 0.3s;
     }
-    
+
     .dropdown-menu a:hover {
         background-color: #f1f1f1;
     }
