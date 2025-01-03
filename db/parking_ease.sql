@@ -64,13 +64,12 @@ CREATE TABLE reservations (
 -- 6. Reviews Table --
 CREATE TABLE reviews (
     review_id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT,
-    lot_id INT, 
+    Name VARCHAR(100) NOT NULL,
+    Email VARCHAR(100) NOT NULL,
+    review_text TEXT, 
     rating INT NOT NULL CHECK (rating BETWEEN 1 AND 5),
-    review_text TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(user_id),
-    FOREIGN KEY (lot_id) REFERENCES parking_lots(lot_id)
+
 );
 
 -- 7. Contact Form Submissions Table
@@ -83,3 +82,18 @@ CREATE TABLE ContactSubmissions (
     Status ENUM('Pending', 'Reviewed', 'Resolved') DEFAULT 'Pending',
     SubmittedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+-- 8. Login Activity Table --
+CREATE TABLE login_activity (
+    login_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,  -- Foreign key to users table
+    login_time DATETIME DEFAULT CURRENT_TIMESTAMP, -- Login timestamp
+    logout_time DATETIME, -- Logout timestamp
+    ip_address VARCHAR(45), -- User's IP address (supports IPv6)
+    user_agent TEXT, -- Browser or device details
+    status ENUM('Success', 'Failed') DEFAULT 'Success', -- Login attempt status
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+);
+
+ALTER TABLE vehicles DROP INDEX vehicle_number;
+ALTER TABLE vehicles ADD UNIQUE KEY user_vehicle_unique (user_id, vehicle_number);
