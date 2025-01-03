@@ -37,9 +37,10 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
                 alert(result.message || "Failed to register. Please try again.");
             }
-        } catch (error) {
+            } catch (error) 
+            {
             console.error("Error:", error);
             alert("Something went wrong. Please try again.");
-        }
+            }
     });
 });
