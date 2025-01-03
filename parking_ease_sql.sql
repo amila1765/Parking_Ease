@@ -66,10 +66,9 @@ CREATE TABLE reviews (
     review_id INT AUTO_INCREMENT PRIMARY KEY,
     Name VARCHAR(100) NOT NULL,
     Email VARCHAR(100) NOT NULL,
-    review_text TEXT, 
+    review_text TEXT,
     rating INT NOT NULL CHECK (rating BETWEEN 1 AND 5),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- 7. Contact Form Submissions Table
@@ -97,3 +96,5 @@ CREATE TABLE login_activity (
 
 ALTER TABLE vehicles DROP INDEX vehicle_number;
 ALTER TABLE vehicles ADD UNIQUE KEY user_vehicle_unique (user_id, vehicle_number);
+
+
