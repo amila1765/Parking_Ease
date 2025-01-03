@@ -353,12 +353,45 @@ if (!isset($_SESSION['email'])) {
         }
     }
 
+    function openDeleteModal() {
+        document.getElementById('deleteProfileModal').style.display = 'block';
+        document.body.classList.add('modal-open');
+    }
+
+    function closeDeleteModal() {
+        document.getElementById('deleteProfileModal').style.display = 'none';
+        document.body.classList.remove('modal-open');
+    }
+
+    document.getElementById('delete-profile-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const password = document.getElementById('delete-password').value;
+
+        const response = await fetch('../API/delete_user_profile.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ password: password })
+        });
+
+        const result = await response.json();
+        alert(result.message);
+
+        if (result.status === 'success') {
+            window.location.href = '/Parking_Ease/index.php';
+        } else {
+            document.getElementById('delete-password').value = '';
+        }
+    });
+
+
     // Call the function to fetch user data on page load
     getUserProfile();
     </script>
 
     <!-- Footer -->
     <?php include '../includes/footer.php'; ?>
+
+    <script src="../assets/scripts/profile.js"></script>
 
 </body>
 </html>
