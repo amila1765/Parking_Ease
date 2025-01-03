@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
     //Prepare the SQL query to insert the review into the database
     $sql = "INSERT INTO reviews (Name, Email, review_text, rating)
-            VALUES ('$name', '$email', $review_text', '$rating')";
+            VALUES ('$name', '$email', '$review_text', '$rating')";
     
     // Log the SQL query for debugging 
     error_log("SQL Query: " . $sql);
